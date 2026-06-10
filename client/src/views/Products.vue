@@ -128,7 +128,7 @@
 import { ref, computed, onMounted } from 'vue'
 import api from '../utils/api'
 
-const API = 'http://localhost:8080/api'
+const API = 'https://shoes-web-be-t7xh.onrender.com/api'
 
 const products = ref([])
 const productDetails = ref([])
@@ -606,23 +606,211 @@ onMounted(async () => {
 }
 
 /* ═══════════ Responsive ═══════════ */
+@media (max-width: 1024px) {
+  .page-banner { padding: 2.5rem 1.5rem 2rem; }
+  .page-banner h1 { font-size: 1.7rem; }
+  .products-container { 
+    gap: 1.5rem; 
+    margin: 1.5rem auto 2rem;
+    padding: 0 1.5rem;
+  }
+  .filter-sidebar {
+    width: 240px;
+    top: 80px;
+  }
+  .product-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+  .product-image { height: 220px; }
+}
+
 @media (max-width: 768px) {
+  .page-banner { 
+    padding: 2rem 1.5rem 1.5rem; 
+    border-bottom: 2px solid #e94560;
+  }
+  .banner-badge { font-size: 0.65rem; margin-bottom: 0.6rem; }
+  .page-banner h1 { font-size: 1.4rem; margin-bottom: 0.2rem; }
+  .page-banner p { font-size: 0.85rem; }
+  
   .products-container {
     flex-direction: column;
-    margin-top: 1rem;
+    margin: 1rem auto 1.5rem;
+    padding: 0 1rem;
+    gap: 1rem;
   }
   .filter-sidebar {
     width: 100%;
     position: static;
+    top: auto;
+    margin-bottom: 1rem;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   }
-  .product-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  }
-  .product-image {
-    height: 180px;
-  }
+  .filter-header { margin-bottom: 1rem; }
+  .filter-group { margin-bottom: 1.2rem; }
+  .filter-group h4 { font-size: 0.75rem; margin-bottom: 0.5rem; }
+  .filter-option { padding: 0.4rem 0; }
+  
   .toolbar {
+    flex-wrap: wrap;
+    gap: 0.8rem;
     padding: 0.6rem;
   }
+  .search-filter { min-width: 100%; }
+  .search-input { font-size: 0.8rem; padding: 0.5rem 1rem 0.5rem 2.4rem; }
+  .sort-wrap { width: 100%; }
+  .sort-wrap select { width: 100%; }
+  .result-count { font-size: 0.8rem; }
+  
+  .product-grid { 
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+    gap: 0;
+  }
+  .product-card { margin: -1px 0 0 -1px; }
+  .product-card:nth-child(2n+1) { margin-left: 0; }
+  .product-card:nth-child(-n+2) { margin-top: 0; }
+  .product-image { height: 160px; }
+  .product-info { padding: 0.8rem; }
+  .product-name { font-size: 0.8rem; }
+  .product-meta { font-size: 0.6rem; margin-bottom: 0.3rem; }
+  .price { font-size: 0.85rem; }
+  
+  .empty-state { padding: 2rem 1.5rem; }
+  .empty-state h3 { font-size: 1.1rem; }
+}
+
+@media (max-width: 640px) {
+  .page-banner { padding: 1.5rem 1rem 1.2rem; }
+  .banner-badge { 
+    font-size: 0.6rem; 
+    gap: 0.3rem;
+    padding: 0.25rem 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+  .banner-badge svg { width: 14px; height: 14px; }
+  .page-banner h1 { font-size: 1.2rem; }
+  .page-banner p { font-size: 0.8rem; }
+  
+  .products-container { 
+    margin: 0.8rem auto 1.2rem;
+    padding: 0 0.8rem;
+  }
+  
+  .filter-sidebar { 
+    padding: 1.2rem 1rem;
+    margin-bottom: 0.8rem;
+  }
+  .filter-header { margin-bottom: 0.8rem; }
+  .filter-header h3 { font-size: 0.9rem; gap: 0.3rem; }
+  .btn-clear-inline { font-size: 0.7rem; padding: 0.25rem 0.6rem; }
+  .filter-group { margin-bottom: 1rem; }
+  .filter-group h4 { font-size: 0.7rem; margin-bottom: 0.4rem; letter-spacing: 0.5px; }
+  .filter-option { 
+    font-size: 0.8rem;
+    padding: 0.3rem 0;
+  }
+  .custom-check { margin-right: 0.3rem; }
+  
+  .toolbar { 
+    gap: 0.6rem; 
+    padding: 0.5rem;
+    flex-direction: column;
+  }
+  .search-filter { min-width: 100%; }
+  .search-icon { left: 10px; }
+  .search-input { 
+    font-size: 0.75rem; 
+    padding: 0.45rem 0.8rem 0.45rem 2.2rem; 
+  }
+  .sort-wrap { 
+    width: 100%;
+    gap: 0.3rem;
+  }
+  .sort-wrap svg { width: 14px; height: 14px; }
+  .sort-wrap select { 
+    padding: 0.45rem 0.8rem;
+    font-size: 0.75rem;
+  }
+  .result-count { 
+    font-size: 0.75rem; 
+    align-self: flex-start;
+  }
+  
+  .product-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .product-image { height: 140px; }
+  .product-info { padding: 0.7rem; }
+  .product-name { font-size: 0.75rem; }
+  .product-meta { font-size: 0.55rem; }
+  .badge-brand { font-size: 0.5rem; padding: 0.2rem 0.5rem; }
+  .price { font-size: 0.8rem; }
+  .variant-count { font-size: 0.6rem; padding: 0.15rem 0.4rem; }
+  
+  .empty-state { 
+    padding: 1.5rem 1rem; 
+  }
+  .empty-state svg { width: 48px; height: 48px; margin-bottom: 0.8rem; }
+  .empty-state h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+  .empty-state p { font-size: 0.8rem; }
+  .btn-reset { 
+    padding: 0.5rem 1.4rem; 
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-banner { 
+    padding: 1.2rem 0.8rem 1rem; 
+    border-bottom: 2px solid #e94560;
+  }
+  .banner-badge { font-size: 0.55rem; }
+  .page-banner h1 { font-size: 1rem; }
+  .page-banner p { font-size: 0.75rem; }
+  
+  .products-container { 
+    padding: 0 0.6rem;
+    gap: 0.8rem;
+    margin: 0.6rem auto 1rem;
+  }
+  
+  .filter-sidebar { 
+    padding: 1rem 0.8rem;
+    margin-bottom: 0.6rem;
+  }
+  .filter-header h3 { font-size: 0.85rem; }
+  .filter-header h3 svg { width: 15px; height: 15px; }
+  .btn-clear-inline { font-size: 0.65rem; }
+  .filter-group { margin-bottom: 0.8rem; }
+  .filter-group h4 { font-size: 0.65rem; }
+  .filter-option { 
+    font-size: 0.75rem;
+    padding: 0.25rem 0;
+  }
+  .custom-check { width: 16px; height: 16px; }
+  
+  .toolbar { padding: 0.4rem; gap: 0.4rem; }
+  .search-filter { min-width: 100%; }
+  .search-icon { left: 8px; }
+  .search-input { 
+    font-size: 0.7rem;
+    padding: 0.4rem 0.7rem 0.4rem 2rem;
+  }
+  .sort-wrap { font-size: 0.7rem; }
+  .sort-wrap svg { width: 12px; height: 12px; }
+  .sort-wrap select { 
+    padding: 0.4rem 0.6rem;
+    font-size: 0.7rem;
+  }
+  .result-count { font-size: 0.7rem; }
+  
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .product-card { margin: 0; }
+  .product-image { height: 130px; }
+  .product-info { padding: 0.6rem; }
+  .product-name { font-size: 0.7rem; -webkit-line-clamp: 2; }
+  .product-meta { font-size: 0.5rem; margin-bottom: 0.2rem; }
+  .price { font-size: 0.75rem; }
+  .variant-count { font-size: 0.55rem; }
+  
+  .empty-state h3 { font-size: 0.95rem; }
+  .btn-reset { padding: 0.45rem 1.2rem; font-size: 0.75rem; }
 }
 </style>

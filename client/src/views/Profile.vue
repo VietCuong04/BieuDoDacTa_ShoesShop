@@ -179,7 +179,7 @@
 import { ref, onMounted, watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
-const API = 'http://localhost:8080/api'
+const API = 'https://shoes-web-be-t7xh.onrender.com/api'
 const route = useRoute()
 
 const user = ref(null)
@@ -669,12 +669,219 @@ onMounted(() => {
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .profile-banner { padding: 2.5rem 1.5rem 2rem; }
+  .banner-inner h1 { font-size: 1.6rem; }
+  
+  .profile-container { 
+    margin: -1.2rem auto 2.5rem;
+    padding: 0 1.5rem;
+  }
+  .profile-grid {
+    grid-template-columns: 260px 1fr;
+    gap: 1.2rem;
+  }
+  
+  .content-card { padding: 1.8rem; }
+  .content-card h2 { font-size: 1.1rem; margin-bottom: 1.2rem; }
+}
+
+@media (max-width: 900px) {
+  .profile-banner { padding: 2rem 1.2rem 1.5rem; }
+  .banner-inner h1 { font-size: 1.4rem; }
+  
+  .profile-container { 
+    margin: -1rem auto 2rem;
+    padding: 0 1.2rem;
+  }
+  
+  .sidebar-card { padding: 1.5rem 1.2rem; }
+  .user-avatar-lg { width: 64px; height: 64px; font-size: 1.4rem; margin-bottom: 0.8rem; }
+  .sidebar-card h3 { font-size: 1rem; }
+  .user-email { font-size: 0.78rem; margin-bottom: 1.2rem; }
+  .sidebar-nav button { padding: 0.6rem 0.9rem; font-size: 0.82rem; gap: 0.5rem; }
+  
+  .content-card { padding: 1.5rem; }
+  .content-card h2 { font-size: 1rem; margin-bottom: 1rem; }
+}
+
 @media (max-width: 768px) {
+  .profile-banner { 
+    padding: 1.8rem 1rem 1.2rem;
+  }
+  .banner-inner h1 { 
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+  }
+  .banner-inner p { font-size: 0.8rem; }
+  
+  .profile-container { 
+    margin: -0.8rem auto 1.5rem;
+    padding: 0 1rem;
+  }
   .profile-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
+  
+  .sidebar-card { 
+    padding: 1.2rem;
+    border-radius: 8px;
+  }
+  .user-avatar-lg { width: 56px; height: 56px; font-size: 1.2rem; margin-bottom: 0.6rem; }
+  .sidebar-card h3 { font-size: 0.9rem; }
+  .user-email { font-size: 0.75rem; margin-bottom: 1rem; }
+  .sidebar-nav { gap: 0.2rem; }
+  .sidebar-nav button { 
+    padding: 0.5rem 0.8rem; 
+    font-size: 0.78rem; 
+    gap: 0.4rem;
+  }
+  .sidebar-nav button svg { width: 16px; height: 16px; }
+  
+  .content-card { 
+    padding: 1.2rem;
+    border-radius: 8px;
+  }
+  .content-card h2 { 
+    font-size: 0.95rem; 
+    margin-bottom: 0.8rem; 
+    padding-bottom: 0.6rem;
+  }
+  
   .form-row {
     grid-template-columns: 1fr;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
   }
+  .form-group { 
+    gap: 0.25rem;
+    margin-bottom: 0.3rem;
+  }
+  .form-group label { font-size: 0.78rem; }
+  .form-group input,
+  .form-group select {
+    padding: 0.55rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  .hint { font-size: 0.7rem; }
+  .btn-save { padding: 0.6rem 1.5rem; font-size: 0.85rem; }
+  
+  .msg { padding: 0.6rem 0.9rem; font-size: 0.8rem; margin-bottom: 0.8rem; }
+  
+  .order-status-tabs {
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+  }
+  .order-status-tabs button { 
+    padding: 0.4rem 0.8rem;
+    font-size: 0.78rem;
+  }
+  
+  .orders-list { gap: 0.8rem; }
+  .order-header { 
+    padding: 0.6rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .order-id { font-size: 0.85rem; }
+  .status-tag { font-size: 0.7rem; padding: 0.2rem 0.6rem; }
+  .order-body { padding: 0.8rem 1rem; }
+  .order-detail-row { 
+    padding: 0.25rem 0;
+    font-size: 0.8rem;
+  }
+  .order-total { font-size: 0.9rem; }
+  
+  .empty-state, .not-logged-in {
+    padding: 2rem 1rem;
+  }
+  .not-logged-in { margin: 2.5rem auto; }
+  .btn-shop { padding: 0.5rem 1.5rem; font-size: 0.8rem; }
+  
+  .loading-box { padding: 1.5rem; }
+}
+
+@media (max-width: 640px) {
+  .profile-banner { 
+    padding: 1.5rem 0.8rem;
+  }
+  .banner-inner h1 { font-size: 1.1rem; }
+  .banner-inner p { font-size: 0.75rem; }
+  
+  .profile-container { 
+    margin: -0.6rem auto 1.2rem;
+    padding: 0 0.8rem;
+  }
+  
+  .sidebar-card { padding: 1rem; }
+  .user-avatar-lg { width: 48px; height: 48px; font-size: 1rem; margin-bottom: 0.5rem; }
+  .sidebar-card h3 { font-size: 0.85rem; }
+  .user-email { font-size: 0.7rem; margin-bottom: 0.8rem; }
+  .sidebar-nav button { 
+    padding: 0.4rem 0.7rem; 
+    font-size: 0.75rem;
+  }
+  
+  .content-card { 
+    padding: 1rem;
+  }
+  .content-card h2 { 
+    font-size: 0.9rem; 
+    margin-bottom: 0.7rem;
+  }
+  
+  .form-group label { font-size: 0.75rem; }
+  .form-group input,
+  .form-group select {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.8rem;
+  }
+  
+  .btn-save { padding: 0.5rem 1.2rem; font-size: 0.8rem; }
+  
+  .order-header { padding: 0.5rem 0.8rem; }
+  .order-id { font-size: 0.8rem; }
+  .order-body { padding: 0.7rem 0.8rem; }
+  .order-detail-row { font-size: 0.75rem; }
+}
+
+@media (max-width: 480px) {
+  .profile-banner { 
+    padding: 1.2rem 0.6rem;
+  }
+  .banner-inner h1 { font-size: 1rem; }
+  
+  .profile-container { padding: 0 0.6rem; }
+  .profile-grid { gap: 0.8rem; }
+  
+  .sidebar-card { padding: 0.8rem; }
+  .user-avatar-lg { width: 44px; height: 44px; font-size: 0.9rem; }
+  .sidebar-card h3 { font-size: 0.8rem; }
+  .sidebar-nav button { padding: 0.35rem 0.6rem; font-size: 0.7rem; }
+  
+  .content-card { padding: 0.8rem; }
+  .content-card h2 { font-size: 0.85rem; margin-bottom: 0.6rem; }
+  
+  .form-row { gap: 0.6rem; margin-bottom: 0.6rem; }
+  .form-group label { font-size: 0.7rem; }
+  .form-group input,
+  .form-group select {
+    padding: 0.45rem 0.6rem;
+    font-size: 0.75rem;
+  }
+  
+  .btn-save { padding: 0.45rem 1rem; font-size: 0.75rem; }
+  
+  .msg { padding: 0.5rem 0.8rem; font-size: 0.75rem; }
+  
+  .order-status-tabs { gap: 0.2rem; margin-bottom: 0.8rem; }
+  .order-status-tabs button { padding: 0.3rem 0.6rem; font-size: 0.7rem; }
+  
+  .order-header { padding: 0.4rem 0.7rem; gap: 0.3rem; }
+  .order-body { padding: 0.6rem 0.7rem; }
+  .order-detail-row { font-size: 0.7rem; }
+  .status-tag { font-size: 0.65rem; padding: 0.15rem 0.5rem; }
 }
 </style>

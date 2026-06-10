@@ -1,13 +1,15 @@
 C:\shoes_web\be\src\main\java\com\shoes\ShoesApplication.java
 C:\shoes_web\be\src\main\java\com\shoes\repository\ChatLogRepository.java
 C:\shoes_web\be\src\main\java\com\shoes\controller\ThuongHieuController.java
+C:\shoes_web\be\src\main\java\com\shoes\entity\DanhGia.java
 C:\shoes_web\be\src\main\java\com\shoes\entity\Size.java
+C:\shoes_web\be\src\main\java\com\shoes\dto\DanhGiaRequest.java
 C:\shoes_web\be\src\main\java\com\shoes\repository\MauSacRepository.java
 C:\shoes_web\be\src\main\java\com\shoes\repository\SanPhamChiTietRepository.java
+C:\shoes_web\be\src\main\java\com\shoes\dto\DanhGiaResponse.java
 C:\shoes_web\be\src\main\java\com\shoes\controller\GiamGiaController.java
 C:\shoes_web\be\src\main\java\com\shoes\dto\RegisterRequest.java
 C:\shoes_web\be\src\main\java\com\shoes\security\JwtFilter.java
-C:\shoes_web\be\src\main\java\com\shoes\config\WebConfig.java
 C:\shoes_web\be\src\main\java\com\shoes\controller\UploadController.java
 C:\shoes_web\be\src\main\java\com\shoes\entity\ChatLog.java
 C:\shoes_web\be\src\main\java\com\shoes\repository\GiamGiaRepository.java
@@ -15,8 +17,11 @@ C:\shoes_web\be\src\main\java\com\shoes\security\JwtUtil.java
 C:\shoes_web\be\src\main\java\com\shoes\dto\TaiKhoanResponse.java
 C:\shoes_web\be\src\main\java\com\shoes\controller\XuatXuController.java
 C:\shoes_web\be\src\main\java\com\shoes\controller\DonHangController.java
+C:\shoes_web\be\src\main\java\com\shoes\dto\RatingStatsResponse.java
+C:\shoes_web\be\src\main\java\com\shoes\controller\DanhGiaController.java
 C:\shoes_web\be\src\main\java\com\shoes\entity\DonHang.java
 C:\shoes_web\be\src\main\java\com\shoes\dto\LoginRequest.java
+C:\shoes_web\be\src\main\java\com\shoes\service\DanhGiaService.java
 C:\shoes_web\be\src\main\java\com\shoes\controller\HoaDonController.java
 C:\shoes_web\be\src\main\java\com\shoes\entity\ChatLieu.java
 C:\shoes_web\be\src\main\java\com\shoes\repository\DonHangRepository.java
@@ -56,6 +61,7 @@ C:\shoes_web\be\src\main\java\com\shoes\service\GiamGiaService.java
 C:\shoes_web\be\src\main\java\com\shoes\service\SanPhamService.java
 C:\shoes_web\be\src\main\java\com\example\GenerateTextFromTextInput.java
 C:\shoes_web\be\src\main\java\com\shoes\config\SecurityConfig.java
+C:\shoes_web\be\src\main\java\com\shoes\repository\DanhGiaRepository.java
 C:\shoes_web\be\src\main\java\com\shoes\entity\HoaDonChiTiet.java
 C:\shoes_web\be\src\main\java\com\shoes\service\SizeService.java
 C:\shoes_web\be\src\main\java\com\shoes\entity\XuatXu.java

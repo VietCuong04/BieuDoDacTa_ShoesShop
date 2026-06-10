@@ -89,7 +89,7 @@ async function handleLogin() {
   loading.value = true
 
   try {
-    const res = await fetch('http://localhost:8080/api/auth/login', {
+    const res = await fetch('https://shoes-web-be-t7xh.onrender.com/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form.value),
@@ -341,17 +341,152 @@ async function handleLogin() {
   border-radius: 8px;
 }
 
+@media (max-width: 900px) {
+  .auth-page { padding: 1.5rem; }
+  .auth-brand { 
+    flex: 0 0 280px;
+    padding: 2.5rem 2rem;
+  }
+  .brand-content h1 { font-size: 1.6rem; }
+  .brand-content p { font-size: 0.85rem; }
+  .bf-item { font-size: 0.78rem; }
+  .auth-form-side { padding: 2.5rem 2rem; }
+  .auth-box h2 { font-size: 1.5rem; }
+}
+
 @media (max-width: 768px) {
   .auth-layout {
     flex-direction: column;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   }
   .auth-brand {
     flex: none;
     padding: 2rem 1.5rem;
+    min-height: 200px;
+    justify-content: center;
   }
+  .auth-brand::after {
+    width: 200px;
+    height: 200px;
+    top: -60px;
+    right: -60px;
+  }
+  .auth-brand::before {
+    width: 150px;
+    height: 150px;
+    bottom: -50px;
+    left: -50px;
+  }
+  .brand-content h1 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .brand-content p { font-size: 0.8rem; line-height: 1.5; margin-bottom: 1rem; }
   .brand-features { display: none; }
+  .logo-circle { width: 56px; height: 56px; }
+  .logo-circle svg { width: 28px; height: 28px; }
+  
   .auth-form-side {
     padding: 2rem 1.5rem;
+    min-height: auto;
+  }
+  .auth-box h2 { font-size: 1.3rem; }
+  .auth-subtitle { margin-bottom: 1.5rem; font-size: 0.85rem; }
+  
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label { font-size: 0.82rem; margin-bottom: 0.4rem; }
+  .form-group input {
+    padding: 0.7rem 0.95rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+  }
+  
+  .btn-submit { 
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    margin-top: 0.4rem;
+  }
+  
+  .switch-link { margin-top: 1.2rem; font-size: 0.85rem; }
+  .error-msg { font-size: 0.8rem; padding: 0.5rem; }
+}
+
+@media (max-width: 640px) {
+  .auth-page { 
+    padding: 1rem;
+    min-height: calc(100vh - 80px);
+  }
+  
+  .auth-layout {
+    border-radius: 12px;
+  }
+  
+  .auth-brand { 
+    padding: 1.5rem;
+    min-height: auto;
+  }
+  .brand-logo { margin-bottom: 0.8rem; }
+  .logo-circle { width: 48px; height: 48px; }
+  .brand-content h1 { font-size: 1.2rem; margin-bottom: 0.4rem; }
+  .brand-content p { font-size: 0.75rem; margin-bottom: 0.8rem; }
+  .auth-brand::after { display: none; }
+  .auth-brand::before { display: none; }
+  
+  .auth-form-side { padding: 1.5rem 1.2rem; }
+  .auth-box h2 { font-size: 1.15rem; }
+  .auth-subtitle { margin-bottom: 1.2rem; font-size: 0.8rem; }
+  
+  .form-group { margin-bottom: 1rem; }
+  .form-group label { font-size: 0.8rem; }
+  .form-group input {
+    padding: 0.65rem 0.9rem;
+    font-size: 0.85rem;
+  }
+  
+  .btn-submit {
+    padding: 0.65rem;
+    font-size: 0.9rem;
+  }
+  .btn-spinner { width: 16px; height: 16px; border-width: 2px; }
+  
+  .switch-link { margin-top: 1rem; font-size: 0.8rem; }
+  .error-msg { font-size: 0.75rem; }
+}
+
+@media (max-width: 480px) {
+  .auth-page { 
+    padding: 0.8rem;
+    min-height: calc(100vh - 60px);
+  }
+  
+  .auth-brand { 
+    padding: 1.2rem;
+    min-height: auto;
+  }
+  .brand-logo { margin-bottom: 0.6rem; }
+  .logo-circle { width: 44px; height: 44px; }
+  .brand-content h1 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .brand-content p { font-size: 0.7rem; margin-bottom: 0.6rem; }
+  
+  .auth-form-side { padding: 1.2rem 1rem; }
+  .auth-box h2 { font-size: 1.05rem; }
+  .auth-subtitle { margin-bottom: 1rem; font-size: 0.75rem; }
+  
+  .form-group { margin-bottom: 0.9rem; }
+  .form-group label { font-size: 0.75rem; gap: 0.3rem; }
+  .form-group label svg { width: 12px; height: 12px; }
+  .form-group input {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+  }
+  
+  .btn-submit {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+  
+  .switch-link { 
+    margin-top: 0.8rem;
+    font-size: 0.75rem;
   }
 }
 </style>

@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:8080/api'
+const API_BASE = 'https://shoes-web-be-t7xh.onrender.com/api'
 
 export function getAuthHeaders() {
   const token = localStorage.getItem('token')

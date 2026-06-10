@@ -67,12 +67,12 @@
         <div class="rating-row">
           <div class="stars">
             <svg v-for="i in 5" :key="i" width="15" height="15" viewBox="0 0 24 24"
-              :fill="i<=4?'#f59e0b':'none'" :stroke="i<=4?'#f59e0b':'#e0e0e0'" stroke-width="2">
+              :fill="i<=Math.round(ratingStats.averageRating)?'#f59e0b':'none'" :stroke="i<=Math.round(ratingStats.averageRating)?'#f59e0b':'#e0e0e0'" stroke-width="2">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
             </svg>
-            <span class="rating-num">4.0</span>
+            <span class="rating-num">{{ ratingStats.averageRating }}</span>
             <span class="rating-sep">|</span>
-            <span class="rating-count">128 đánh giá</span>
+            <span class="rating-count">{{ ratingStats.totalReviews }} đánh giá</span>
             <span class="rating-sep">|</span>
             <span class="sold-count">342 đã bán</span>
           </div>
@@ -242,6 +242,9 @@
       </div>
     </div>
 
+    <!-- Reviews Section -->
+    <ReviewSection :productId="product.maSanPham" @review-added="onReviewAdded" />
+
     <!-- Featured Products Slider -->
     <div class="featured-section" v-if="featuredProducts.length > 0">
       <div class="featured-header">
@@ -312,9 +315,10 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import ReviewSection from '../components/ReviewSection.vue'
 
 const route = useRoute()
-const API = 'http://localhost:8080/api'
+const API = 'https://shoes-web-be-t7xh.onrender.com/api'
 
 const product = ref(null)
 const details = ref([])
@@ -330,6 +334,7 @@ const sliderRef = ref(null)
 const sliderStart = ref(true)
 const sliderEnd = ref(false)
 const allProductDetails = ref({})
+const ratingStats = ref({ averageRating: 0, totalReviews: 0 })
 
 function formatPrice(v) {
   if (v == null) return ''
@@ -479,6 +484,20 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
+function onReviewAdded() {
+  // Reload rating stats when a review is added
+  const id = route.params.id
+  fetch(`${API}/reviews/stats/product/${id}`)
+    .then(res => {
+      if (res.ok) return res.json()
+      throw new Error('Failed to load stats')
+    })
+    .then(data => {
+      ratingStats.value = data
+    })
+    .catch(e => console.error('Lỗi cập nhật rating:', e))
+}
+
 onMounted(async () => {
   const id = route.params.id
   try {
@@ -498,6 +517,17 @@ onMounted(async () => {
         selectedImage.value = product.value.hinhAnh
       }
     }
+    
+    // Load rating stats
+    try {
+      const rRes = await fetch(`${API}/reviews/stats/product/${id}`)
+      if (rRes.ok) {
+        ratingStats.value = await rRes.json()
+      }
+    } catch (e) {
+      console.error('Lỗi tải rating stats:', e)
+    }
+    
     // Load featured products
     const fpRes = await fetch(`${API}/products?page=0&size=12`)
     if (fpRes.ok) {
@@ -1326,28 +1356,333 @@ onMounted(async () => {
 .btn-back:hover { background: #d63851; transform: translateY(-1px); }
 
 /* ═══════════ Responsive ═══════════ */
+@media (max-width: 1024px) {
+  .detail-container {
+    grid-template-columns: 1.2fr 1fr;
+    margin: 1.5rem auto;
+    padding: 0 1.5rem;
+  }
+  .detail-gallery { padding: 1.5rem; top: 80px; }
+  .detail-info { padding: 1.5rem 2rem 1.5rem 1.5rem; }
+  .product-title { font-size: 1.4rem; }
+  .price-main { font-size: 1.6rem; }
+  .perks-row { gap: 0.5rem; }
+}
+
 @media (max-width: 900px) {
   .detail-container {
     grid-template-columns: 1fr;
     margin: 1rem auto;
+    padding: 0 1.5rem;
   }
-  .detail-gallery { position: static; }
-  .detail-info { border-left: none; border-top: 1px solid #f0f0f0; }
+  .detail-gallery { position: static; top: auto; padding: 1.5rem 0; }
+  .detail-info { border-left: none; border-top: 1px solid #f0f0f0; padding: 1.5rem 0; }
+  .breadcrumb { padding: 0.75rem 1.5rem; font-size: 0.78rem; }
+  .featured-section { padding: 2.5rem 1.5rem; }
+  .tabs-section { margin: 1.5rem auto 2.5rem; padding: 0 1.5rem; border-radius: 12px; }
+  .tab-content { padding: 1.5rem; }
 }
+
+@media (max-width: 768px) {
+  .breadcrumb-bar { border-bottom: 1px solid #eee; }
+  .breadcrumb { 
+    padding: 0.6rem 1rem; 
+    font-size: 0.7rem;
+    gap: 0.3rem;
+  }
+  .breadcrumb a { gap: 0.2rem; }
+  .breadcrumb .current { max-width: 200px; }
+  
+  .detail-container {
+    margin: 0;
+    padding: 0 1rem;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .detail-gallery { 
+    padding: 1.2rem 0;
+    top: auto;
+  }
+  .main-image-wrap {
+    aspect-ratio: 1;
+    border-radius: 12px;
+  }
+  .img-nav { width: 32px; height: 32px; }
+  .img-nav.prev { left: 8px; }
+  .img-nav.next { right: 8px; }
+  .img-counter { font-size: 0.7rem; }
+  .thumb-list { gap: 0.5rem; margin-top: 0.8rem; }
+  .thumb-item { width: 60px; height: 60px; }
+  
+  .detail-info { 
+    padding: 1.2rem 0 1.5rem;
+    border-top: 1px solid #eee;
+  }
+  .info-top { margin-bottom: 0.6rem; }
+  .brand-tag { font-size: 0.65rem; padding: 0.2rem 0.6rem; }
+  .product-title { font-size: 1.2rem; margin-bottom: 0.6rem; }
+  .rating-row { margin-bottom: 1rem; padding-bottom: 0.8rem; }
+  .stars { gap: 1px; }
+  .rating-num { font-size: 0.8rem; margin-left: 0.3rem; }
+  .rating-sep { margin: 0 0.3rem; }
+  .rating-count, .sold-count { font-size: 0.75rem; }
+  
+  .price-block {
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+  }
+  .price-main { font-size: 1.4rem; }
+  .price-range-label { font-size: 1rem; }
+  .price-sku { font-size: 0.7rem; }
+  .price-hint { font-size: 0.7rem; }
+  
+  .meta-row { gap: 0.5rem; margin-bottom: 0.8rem; font-size: 0.8rem; }
+  .meta-label { min-width: 70px; }
+  .meta-val { font-size: 0.78rem; }
+  
+  .section-divider { margin: 0.8rem 0; }
+  
+  .variant-section { margin-bottom: 1rem; }
+  .variant-header { margin-bottom: 0.5rem; }
+  .variant-label { font-size: 0.78rem; }
+  .variant-selected { font-size: 0.78rem; }
+  .variant-options { gap: 0.35rem; }
+  .variant-btn { 
+    padding: 0.4rem 0.9rem; 
+    font-size: 0.78rem;
+    border-radius: 6px;
+  }
+  .size-btn { min-width: 48px; }
+  
+  .stock-row { margin-bottom: 0.8rem; }
+  .stock-in, .stock-out { font-size: 0.78rem; padding: 0.3rem 0.8rem; }
+  
+  .cart-row {
+    padding: 0.8rem 0;
+    gap: 0.6rem;
+  }
+  .qty-control button { width: 34px; height: 38px; font-size: 1rem; }
+  .qty-control input { width: 48px; height: 38px; font-size: 0.9rem; }
+  .btn-add-cart {
+    padding: 0 1.2rem;
+    height: 44px;
+    font-size: 0.88rem;
+    gap: 0.4rem;
+  }
+  .cart-toast { font-size: 0.8rem; }
+  
+  .perks-row { 
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+  .perk-item { 
+    padding: 0.65rem 0.6rem;
+    gap: 0.5rem;
+  }
+  .perk-icon { width: 28px; height: 28px; }
+  .perk-item strong { font-size: 0.68rem; }
+  .perk-item span { font-size: 0.63rem; }
+  
+  .tabs-section { 
+    margin: 1rem auto 2rem;
+    padding: 0 1rem;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .tabs-header { flex-wrap: wrap; }
+  .tab-btn { 
+    padding: 0.8rem 1rem;
+    font-size: 0.75rem;
+  }
+  .tab-content { 
+    padding: 1.2rem;
+    overflow-x: auto;
+  }
+  .desc-text { 
+    font-size: 0.88rem;
+    line-height: 1.65;
+    max-width: 100%;
+  }
+  .spec-table { max-width: 100%; }
+  .spec-row span:first-child { width: 120px; font-size: 0.78rem; }
+  .spec-row span:last-child { font-size: 0.78rem; }
+  
+  .variants-table-wrap { border-radius: 8px; }
+  .variants-table th { padding: 0.6rem 0.8rem; font-size: 0.7rem; }
+  .variants-table td { padding: 0.6rem 0.8rem; font-size: 0.78rem; }
+  
+  .ship-tab { gap: 0.8rem; }
+  .ship-item { 
+    gap: 0.8rem;
+    padding: 1rem 1.2rem;
+    gap: 0.8rem;
+  }
+  .ship-item strong { font-size: 0.88rem; }
+  .ship-item p { font-size: 0.78rem; }
+  
+  .featured-section { 
+    padding: 2rem 1rem 2.5rem;
+    margin-top: 1rem;
+  }
+  .featured-header { 
+    max-width: 100%;
+    margin: 0 0 1.5rem;
+  }
+  .featured-title h2 { font-size: 1.2rem; }
+  .featured-title p { font-size: 0.75rem; }
+  .nav-btn { width: 36px; height: 36px; }
+  .slider-track { 
+    gap: 1rem;
+    max-width: 100%;
+  }
+  .feat-card { width: 160px; }
+  .feat-img { height: 140px; }
+  .feat-info { padding: 0.8rem; }
+  .feat-name { font-size: 0.78rem; }
+  .feat-price { font-size: 0.85rem; }
+}
+
 @media (max-width: 640px) {
-  .detail-container { padding: 0 1rem; border-radius: 12px; }
-  .detail-gallery, .detail-info { padding: 1.5rem; }
-  .product-title { font-size: 1.35rem; }
-  .price-main { font-size: 1.6rem; }
-  .perks-row { grid-template-columns: 1fr; gap: 0.5rem; }
-  .tab-btn { padding: 0.75rem 1rem; font-size: 0.8rem; }
-  .feat-card { width: 165px; }
-  .feat-img { height: 150px; }
-  .featured-section { padding: 2rem 1rem 2.5rem; }
-  .tabs-section { padding: 0 1rem; border-radius: 12px; }
-  .tab-content { padding: 1.5rem 1rem; }
+  .breadcrumb { 
+    padding: 0.5rem 0.8rem;
+    font-size: 0.65rem;
+  }
+  .breadcrumb svg { width: 12px; height: 12px; }
   .breadcrumb .current { max-width: 150px; }
-  .cart-row { flex-wrap: wrap; }
-  .btn-add-cart { flex: 1 1 100%; }
+  
+  .detail-container { padding: 0 0.8rem; }
+  
+  .detail-gallery { padding: 1rem 0; }
+  .main-image-wrap { border-radius: 8px; }
+  .img-nav { width: 28px; height: 28px; display: none; }
+  .carousel-indicators { display: none; }
+  .thumb-list { 
+    gap: 0.4rem; 
+    margin-top: 0.6rem;
+  }
+  .thumb-item { 
+    width: 52px; 
+    height: 52px;
+    border-width: 2px;
+  }
+  .img-counter { font-size: 0.65rem; margin-top: 0.5rem; }
+  
+  .detail-info { padding: 1rem 0; }
+  .info-top { margin-bottom: 0.5rem; }
+  .brand-tag { font-size: 0.6rem; }
+  .origin-tag { font-size: 0.75rem; }
+  .product-title { font-size: 1.1rem; margin-bottom: 0.5rem; line-height: 1.2; }
+  
+  .rating-row { 
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.6rem;
+  }
+  .stars { gap: 0px; }
+  .rating-num { font-size: 0.75rem; }
+  .rating-count, .sold-count { font-size: 0.7rem; }
+  
+  .price-block {
+    padding: 0.7rem 0.8rem;
+    margin-bottom: 0.8rem;
+    border-radius: 8px;
+  }
+  .price-main { font-size: 1.3rem; }
+  .price-sku { font-size: 0.65rem; }
+  
+  .meta-row { 
+    margin-bottom: 0.6rem; 
+    font-size: 0.75rem;
+  }
+  .meta-label { min-width: 60px; }
+  
+  .variant-section { margin-bottom: 0.8rem; }
+  .variant-label { font-size: 0.75rem; }
+  .variant-options { gap: 0.3rem; }
+  .variant-btn { 
+    padding: 0.35rem 0.75rem;
+    font-size: 0.7rem;
+  }
+  
+  .cart-row { gap: 0.4rem; padding: 0.6rem 0; }
+  .qty-control button { width: 30px; height: 34px; }
+  .qty-control input { width: 44px; height: 34px; }
+  .btn-add-cart {
+    height: 40px;
+    padding: 0 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .perks-row { 
+    grid-template-columns: 1fr;
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+  }
+  .perk-item { 
+    padding: 0.6rem;
+    gap: 0.5rem;
+  }
+  
+  .tabs-section { 
+    margin: 0.8rem auto 1.5rem;
+    padding: 0 0.8rem;
+  }
+  .tabs-header { overflow-x: auto; }
+  .tab-btn { 
+    padding: 0.7rem 0.8rem;
+    font-size: 0.7rem;
+    white-space: nowrap;
+  }
+  .tab-content { padding: 1rem; }
+  .desc-text { font-size: 0.82rem; line-height: 1.6; }
+  
+  .featured-section { padding: 1.5rem 0.8rem 2rem; }
+  .featured-header { margin: 0 0 1.2rem; }
+  .featured-title h2 { font-size: 1.1rem; }
+  .featured-title p { font-size: 0.7rem; }
+  .slider-track { gap: 0.8rem; }
+  .feat-card { width: 140px; }
+  .feat-img { height: 120px; }
+  .feat-name { font-size: 0.7rem; }
+  .feat-price { font-size: 0.8rem; }
 }
+
+@media (max-width: 480px) {
+  .breadcrumb { 
+    display: none;
+  }
+  
+  .detail-container { padding: 0 0.6rem; }
+  
+  .detail-gallery { padding: 0.8rem 0; }
+  .thumb-list { gap: 0.3rem; }
+  .thumb-item { width: 48px; height: 48px; }
+  
+  .detail-info { padding: 0.8rem 0; }
+  .product-title { 
+    font-size: 1rem; 
+    margin-bottom: 0.4rem;
+  }
+  .price-main { font-size: 1.2rem; }
+  .rating-row { margin-bottom: 0.6rem; padding-bottom: 0.5rem; }
+  .rating-num { font-size: 0.7rem; }
+  
+  .variant-button { padding: 0.3rem 0.7rem; font-size: 0.65rem; }
+  .cart-row { gap: 0.3rem; padding: 0.5rem 0; }
+  .btn-add-cart { height: 38px; font-size: 0.75rem; }
+  
+  .tabs-section { margin: 0.6rem auto 1rem; }
+  .tab-btn { padding: 0.6rem 0.7rem; font-size: 0.65rem; }
+  .tab-content { padding: 0.8rem; }
+  
+  .featured-section { padding: 1rem 0.6rem 1.5rem; }
+  .featured-title h2 { font-size: 1rem; }
+  .slider-track { gap: 0.6rem; }
+  .feat-card { width: 130px; }
+  .feat-img { height: 110px; }
+}
+  .btn-add-cart { flex: 1 1 100%; }
+
 </style>

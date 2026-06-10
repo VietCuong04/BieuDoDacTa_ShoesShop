@@ -89,7 +89,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 
-const API = 'http://localhost:8080/api/brands'
+const API = 'https://shoes-web-be-t7xh.onrender.com/api/brands'
 const items = ref([])
 const showModal = ref(false)
 const isEdit = ref(false)

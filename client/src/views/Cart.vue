@@ -346,14 +346,171 @@ onMounted(() => {
 .btn-back-shop:hover { color: #111; }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .cart-banner { padding: 2.5rem 1.5rem 2rem; }
+  .banner-inner h1 { font-size: 1.6rem; }
+  .cart-container { margin: 1.5rem auto 3rem; padding: 0 1.5rem; }
+  .cart-grid { grid-template-columns: 1fr 300px; gap: 1.5rem; }
+  .items-header { grid-template-columns: 1.5fr 1fr 1fr 1fr 40px; font-size: 0.75rem; }
+  .cart-item { grid-template-columns: 1.5fr 1fr 1fr 1fr 40px; }
+  .summary-card { position: static; }
+}
+
 @media (max-width: 900px) {
-  .cart-grid { grid-template-columns: 1fr; }
-  .items-header { display: none; }
+  .cart-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .summary-card { position: sticky; top: 90px; }
+}
+
+@media (max-width: 768px) {
+  .cart-banner { padding: 2rem 1.5rem 1.5rem; }
+  .banner-inner h1 { font-size: 1.4rem; margin-bottom: 0.2rem; }
+  .banner-inner p { font-size: 0.85rem; }
+  
+  .cart-container { 
+    margin: 1rem auto 2rem;
+    padding: 0 1rem;
+  }
+  
+  .cart-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+  
+  .items-header { 
+    display: none;
+  }
+  
   .cart-item {
     grid-template-columns: 1fr;
-    gap: 0.8rem;
+    gap: 0.6rem;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    border: 1px solid #eee;
+    margin-bottom: 0.8rem;
   }
-  .col-price::before { content: 'Đơn giá: '; font-weight: 600; }
-  .col-total::before { content: 'Thành tiền: '; font-weight: 600; }
+  
+  .col-product {
+    gap: 0.8rem;
+    display: flex;
+  }
+  .item-image {
+    width: 70px;
+    height: 70px;
+  }
+  .item-info h4 { font-size: 0.85rem; }
+  .item-variant { font-size: 0.7rem; gap: 0.5rem; }
+  
+  .col-price::before,
+  .col-total::before {
+    content: attr(data-label);
+    font-weight: 600;
+    margin-right: 0.3rem;
+  }
+  
+  .col-price::before { content: 'Đơn giá: '; }
+  .col-total::before { content: 'Thành tiền: '; }
+  
+  .col-price,
+  .col-qty,
+  .col-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+  }
+  
+  .col-action { justify-self: end; }
+  
+  .qty-control button { width: 28px; height: 28px; font-size: 0.9rem; }
+  .qty-control span { width: 36px; font-size: 0.8rem; line-height: 28px; }
+  
+  .empty-cart { padding: 3rem 1.5rem; }
+  .empty-cart svg { width: 56px; height: 56px; }
+  .empty-cart h2 { font-size: 1.2rem; }
+  .empty-cart p { font-size: 0.85rem; }
+  .btn-continue { padding: 0.6rem 1.6rem; font-size: 0.85rem; }
+  
+  .summary-card {
+    position: static;
+    top: auto;
+    padding: 1.2rem;
+  }
+  .summary-card h3 { font-size: 0.95rem; margin-bottom: 1rem; }
+  .summary-row { font-size: 0.8rem; padding: 0.3rem 0; }
+  .summary-row.total { font-size: 0.95rem; }
+  .total-price { font-size: 1.05rem; }
+  .btn-checkout { height: 44px; font-size: 0.9rem; }
+}
+
+@media (max-width: 640px) {
+  .cart-banner { padding: 1.5rem 1rem 1.2rem; }
+  .banner-inner h1 { font-size: 1.2rem; }
+  .banner-inner p { font-size: 0.8rem; }
+  
+  .cart-container { 
+    margin: 0.8rem auto 1.5rem;
+    padding: 0 0.8rem;
+  }
+  
+  .cart-item {
+    padding: 0.8rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .item-image {
+    width: 60px;
+    height: 60px;
+  }
+  .item-info h4 { font-size: 0.8rem; }
+  .item-variant { font-size: 0.65rem; }
+  
+  .col-price, .col-total, .col-qty {
+    font-size: 0.8rem;
+  }
+  
+  .qty-control button { width: 24px; height: 24px; font-size: 0.8rem; }
+  .qty-control span { width: 32px; line-height: 24px; font-size: 0.75rem; }
+  
+  .empty-cart { padding: 2rem 1rem; }
+  .empty-cart svg { width: 48px; height: 48px; margin-bottom: 1rem; }
+  .empty-cart h2 { font-size: 1.1rem; margin: 0.8rem 0 0.2rem; }
+  .empty-cart p { font-size: 0.8rem; margin: 0 0 1.2rem; }
+  .btn-continue { padding: 0.55rem 1.4rem; font-size: 0.8rem; }
+  
+  .summary-card {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+  .summary-card h3 { font-size: 0.9rem; margin-bottom: 0.8rem; }
+  .summary-row { font-size: 0.75rem; padding: 0.25rem 0; }
+  .summary-divider { margin: 0.6rem 0; }
+  .summary-row.total { font-size: 0.9rem; }
+  .total-price { font-size: 1rem; }
+  .btn-checkout { height: 42px; font-size: 0.85rem; }
+  .btn-back-shop { font-size: 0.8rem; margin-top: 0.6rem; }
+}
+
+@media (max-width: 480px) {
+  .cart-item {
+    padding: 0.6rem;
+    gap: 0.4rem;
+  }
+  .item-image {
+    width: 50px;
+    height: 50px;
+  }
+  .item-info h4 { font-size: 0.75rem; }
+  .item-variant { font-size: 0.6rem; }
+  
+  .col-price, .col-total, .col-qty {
+    font-size: 0.75rem;
+  }
+  
+  .qty-control button { width: 22px; height: 22px; font-size: 0.7rem; }
+  .qty-control span { width: 28px; line-height: 22px; font-size: 0.7rem; }
+  .btn-remove svg { width: 16px; height: 16px; }
+  
+  .summary-card { padding: 0.8rem; }
+  .summary-card h3 { font-size: 0.85rem; margin-bottom: 0.6rem; }
+  .summary-row { font-size: 0.7rem; }
+  .btn-checkout { height: 40px; font-size: 0.8rem; margin-top: 1rem; }
 }
 </style>

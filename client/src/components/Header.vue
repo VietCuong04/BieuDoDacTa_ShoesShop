@@ -335,38 +335,89 @@ function logout() {
 .btn-out:hover { background: #e94560; color: #fff; }
 
 /* Mobile */
-.mobile-toggle { display: none; }
+.mobile-toggle { 
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: auto;
+}
 .mobile-menu { display: none; }
 
+@media (max-width: 900px) {
+  .search-wrap { display: none; }
+  .header-inner { padding: 0 1.5rem; }
+  .logo-text { font-size: 1.2rem; }
+}
+
 @media (max-width: 768px) {
-  .nav, .search-wrap { display: none; }
+  .header-inner {
+    height: 60px;
+    padding: 0 1rem;
+    gap: 0.8rem;
+  }
+  .logo-icon { font-size: 1.35rem; }
+  .logo-text { font-size: 1.1rem; }
+  .nav { display: none; }
+  .search-wrap { display: none !important; }
+  
+  .actions {
+    gap: 0.4rem;
+  }
+  .cart-link { width: 36px; height: 36px; }
+  .cart-badge { width: 16px; height: 16px; font-size: 0.6rem; top: 0; right: -2px; }
+  
+  .user-pill {
+    padding: 0.25rem 0.6rem 0.25rem 0.25rem;
+    padding-right: 0.8rem;
+    gap: 0.3rem;
+  }
+  .avatar { width: 26px; height: 26px; font-size: 0.7rem; }
+  .user-label { 
+    font-size: 0.75rem;
+    max-width: 100px;
+  }
+  
+  .btn-login { 
+    padding: 0.35rem 0.9rem;
+    font-size: 0.8rem;
+  }
+  .btn-signup { 
+    padding: 0.35rem 1rem;
+    font-size: 0.8rem;
+  }
+  .btn-out { 
+    padding: 0.3rem 0.8rem;
+    font-size: 0.75rem;
+  }
+  
   .mobile-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px; height: 36px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: relative;
+    width: 32px; height: 32px;
+    margin-left: 0.3rem;
   }
   .mobile-toggle span,
   .mobile-toggle span::before,
   .mobile-toggle span::after {
     display: block;
     width: 20px;
-    height: 2px;
+    height: 2.3px;
     background: #333;
     border-radius: 2px;
-    transition: all 0.3s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
   }
   .mobile-toggle span::before,
   .mobile-toggle span::after {
     content: '';
     position: absolute;
+    left: 0;
   }
-  .mobile-toggle span::before { top: -6px; }
-  .mobile-toggle span::after { top: 6px; }
+  .mobile-toggle span::before { top: -7px; }
+  .mobile-toggle span::after { top: 7px; }
   .mobile-toggle span.open { background: transparent; }
   .mobile-toggle span.open::before { top: 0; transform: rotate(45deg); }
   .mobile-toggle span.open::after { top: 0; transform: rotate(-45deg); }
@@ -376,14 +427,141 @@ function logout() {
     background: #fff;
     border-top: 1px solid #eee;
     padding: 0.5rem 0;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
   }
   .mobile-menu a {
-    padding: 0.8rem 2rem;
-    font-size: 0.95rem;
+    padding: 0.65rem 1.2rem;
+    font-size: 0.85rem;
     font-weight: 500;
     color: #333;
     transition: background 0.15s;
+    border-bottom: 1px solid #f5f5f5;
   }
-  .mobile-menu a:hover { background: #f5f5f5; }
+  .mobile-menu a:last-child {
+    border-bottom: none;
+  }
+  .mobile-menu a:active,
+  .mobile-menu a:hover { 
+    background: #f5f5f5; 
+  }
+  .mobile-menu a.active {
+    color: #e94560;
+    background: rgba(233, 69, 96, 0.05);
+  }
+}
+
+@media (max-width: 640px) {
+  .header-inner {
+    height: 56px;
+    padding: 0 0.8rem;
+    gap: 0.6rem;
+  }
+  .logo-icon { font-size: 1.25rem; }
+  .logo-text { font-size: 1rem; }
+  .logo-accent { font-size: 0.95rem; }
+  
+  .actions { gap: 0.35rem; }
+  .cart-link { width: 34px; height: 34px; }
+  .cart-badge { width: 15px; height: 15px; font-size: 0.55rem; }
+  
+  .user-pill {
+    padding: 0.2rem 0.5rem 0.2rem 0.2rem;
+    padding-right: 0.7rem;
+  }
+  .avatar { width: 24px; height: 24px; font-size: 0.65rem; }
+  .user-label { 
+    font-size: 0.7rem;
+    max-width: 80px;
+  }
+  
+  .btn-login { 
+    padding: 0.3rem 0.8rem;
+    font-size: 0.75rem;
+  }
+  .btn-signup { 
+    padding: 0.3rem 0.9rem;
+    font-size: 0.75rem;
+  }
+  .btn-out { 
+    padding: 0.25rem 0.7rem;
+    font-size: 0.7rem;
+  }
+  
+  .mobile-toggle {
+    width: 30px; height: 30px;
+    margin-left: 0.2rem;
+  }
+  .mobile-toggle span,
+  .mobile-toggle span::before,
+  .mobile-toggle span::after {
+    width: 18px;
+    height: 2px;
+  }
+  .mobile-toggle span::before { top: -6px; }
+  .mobile-toggle span::after { top: 6px; }
+  
+  .mobile-menu {
+    max-height: calc(100vh - 56px);
+  }
+  .mobile-menu a {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-inner {
+    height: 52px;
+    padding: 0 0.6rem;
+    gap: 0.5rem;
+  }
+  .logo-icon { font-size: 1.1rem; }
+  .logo-text { font-size: 0.9rem; }
+  
+  .actions { gap: 0.3rem; }
+  .cart-link { width: 32px; height: 32px; }
+  .cart-badge { width: 14px; height: 14px; font-size: 0.5rem; top: -1px; right: -3px; }
+  
+  .user-pill {
+    padding: 0.15rem 0.4rem 0.15rem 0.15rem;
+    padding-right: 0.6rem;
+    display: none;
+  }
+  
+  .btn-login { 
+    padding: 0.25rem 0.7rem;
+    font-size: 0.7rem;
+    display: none;
+  }
+  .btn-signup { 
+    padding: 0.25rem 0.8rem;
+    font-size: 0.7rem;
+  }
+  .btn-out { 
+    padding: 0.2rem 0.6rem;
+    font-size: 0.65rem;
+  }
+  
+  .mobile-toggle {
+    width: 28px; height: 28px;
+    margin-left: 0;
+  }
+  .mobile-toggle span,
+  .mobile-toggle span::before,
+  .mobile-toggle span::after {
+    width: 16px;
+    height: 1.8px;
+  }
+  .mobile-toggle span::before { top: -5px; }
+  .mobile-toggle span::after { top: 5px; }
+  
+  .mobile-menu {
+    max-height: calc(100vh - 52px);
+  }
+  .mobile-menu a {
+    padding: 0.55rem 0.9rem;
+    font-size: 0.75rem;
+  }
 }
 </style>

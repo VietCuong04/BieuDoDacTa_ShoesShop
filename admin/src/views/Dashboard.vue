@@ -217,7 +217,7 @@ import { Chart, DoughnutController, BarController, ArcElement, BarElement, Categ
 
 Chart.register(DoughnutController, BarController, ArcElement, BarElement, CategoryScale, LinearScale, Tooltip, Legend)
 
-const API = 'http://localhost:8080/api'
+const API = 'https://shoes-web-be-t7xh.onrender.com/api'
 
 const stats = ref({ products: 0, brands: 0, colors: 0, sizes: 0, materials: 0, origins: 0, orders: 0, employees: 0, discounts: 0 })
 const chatStats = ref({ totalChats: 0, chatsToday: 0, successfulChats: 0, successRate: 0, failedChats: 0, uniqueUsers: 0, topUsers: [], sampleQuestions: [] })

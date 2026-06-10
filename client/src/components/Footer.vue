@@ -280,24 +280,81 @@
 }
 .fb-links a:hover { color: #e94560; }
 
+@media (max-width: 1024px) {
+  .newsletter-strip { padding: 1.5rem; }
+  .ns-inner { gap: 1.5rem; }
+  .ns-form input { width: 240px; }
+  .footer-top { padding: 2rem; }
+  .ft-inner { gap: 2rem; grid-template-columns: 1fr 1fr; }
+  .brand-col { grid-column: 1 / -1; }
+}
+
 @media (max-width: 768px) {
+  .newsletter-strip { padding: 1.2rem 1rem; }
   .ns-inner {
     flex-direction: column;
     text-align: center;
+    gap: 1rem;
   }
-  .ns-form input { width: 200px; }
+  .ns-text h3 { font-size: 1rem; }
+  .ns-text p { font-size: 0.8rem; }
+  .ns-form {
+    width: 100%;
+    flex-direction: column;
+  }
+  .ns-form input { 
+    width: 100%; 
+    padding: 0.6rem;
+  }
+  .ns-form button { 
+    padding: 0.6rem;
+    flex: 1;
+  }
+  .footer-top { 
+    padding: 1.5rem 1rem;
+  }
   .ft-inner {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
   .brand-col {
-    grid-column: 1 / -1;
+    grid-column: auto;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 1rem;
   }
+  .ft-col { margin-bottom: 0.5rem; }
+  .ft-col h4 { margin-bottom: 0.8rem; font-size: 0.7rem; }
+  .ft-col ul li { margin-bottom: 0.5rem; }
+  .ft-col ul li a { font-size: 0.8rem; }
+  .contact-list li span { font-size: 0.8rem; }
   .fb-inner {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.8rem;
     text-align: center;
+    padding: 1rem;
   }
+  .fb-inner p { font-size: 0.7rem; }
+  .fb-links { gap: 1rem; }
+  .fb-links a { font-size: 0.7rem; }
+}
+
+@media (max-width: 480px) {
+  .newsletter-strip { padding: 0.8rem; }
+  .ns-text h3 { font-size: 0.9rem; }
+  .ns-text p { font-size: 0.75rem; }
+  .ns-form input { font-size: 0.75rem; }
+  .ns-form button { font-size: 0.65rem; letter-spacing: 0.5px; }
+  .footer-top { padding: 1rem; }
+  .ft-logo { margin-bottom: 0.8rem; }
+  .ft-brand { font-size: 1.1rem; }
+  .ft-desc { font-size: 0.8rem; margin-bottom: 0.8rem; }
+  .ft-socials { justify-content: center; }
+  .ft-socials a { width: 32px; height: 32px; }
+  .ft-col h4 { font-size: 0.65rem; margin-bottom: 0.6rem; letter-spacing: 1px; }
+  .footer-bottom { padding: 0.8rem 1rem; }
+  .fb-inner p { font-size: 0.65rem; }
+  .fb-links { flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
+  .fb-links a { font-size: 0.65rem; }
 }
 @media (max-width: 480px) {
   .ft-inner {

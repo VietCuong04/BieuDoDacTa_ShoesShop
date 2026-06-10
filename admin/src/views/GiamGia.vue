@@ -185,7 +185,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 
-const API = 'http://localhost:8080/api/discounts'
+const API = 'https://shoes-web-be-t7xh.onrender.com/api/discounts'
 const items = ref([])
 const showModal = ref(false)
 const isEdit = ref(false)

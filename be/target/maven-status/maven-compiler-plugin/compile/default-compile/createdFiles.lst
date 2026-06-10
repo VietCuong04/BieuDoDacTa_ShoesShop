@@ -1,4 +1,6 @@
 com\shoes\repository\ChatLogRepository.class
+com\shoes\repository\DanhGiaRepository.class
+com\shoes\dto\DanhGiaRequest.class
 com\shoes\entity\ChatLieu.class
 com\shoes\service\HoaDonChiTietService.class
 com\shoes\repository\HoaDonRepository.class
@@ -6,6 +8,7 @@ com\shoes\repository\ThuongHieuRepository.class
 com\shoes\entity\Size.class
 com\shoes\dto\LoginRequest.class
 com\shoes\repository\XuatXuRepository.class
+com\shoes\dto\RatingStatsResponse.class
 com\shoes\entity\ThuongHieu.class
 com\shoes\entity\XuatXu.class
 com\shoes\service\MauSacService.class
@@ -19,7 +22,6 @@ com\shoes\service\HoaDonService.class
 com\shoes\service\SanPhamService.class
 com\shoes\service\SizeService.class
 com\shoes\repository\MauSacRepository.class
-com\shoes\config\WebConfig.class
 com\shoes\controller\HoaDonChiTietController.class
 com\shoes\service\DonHangService.class
 com\shoes\entity\GiamGia.class
@@ -27,6 +29,7 @@ com\shoes\repository\DonHangRepository.class
 com\shoes\repository\SanPhamChiTietRepository.class
 com\shoes\repository\SizeRepository.class
 com\shoes\dto\ChatRequest.class
+com\shoes\service\DanhGiaService.class
 com\shoes\entity\SanPham.class
 com\shoes\controller\ChatController.class
 com\shoes\repository\ChatLieuRepository.class
@@ -48,6 +51,7 @@ com\shoes\entity\TaiKhoan.class
 com\shoes\entity\MauSac.class
 com\shoes\controller\SizeController.class
 com\shoes\service\SanPhamChiTietService.class
+com\shoes\controller\DanhGiaController.class
 com\shoes\controller\ChatLieuController.class
 com\shoes\controller\MauSacController.class
 com\shoes\ShoesApplication.class
@@ -60,8 +64,10 @@ com\shoes\service\XuatXuService.class
 com\example\GenerateTextFromTextInput.class
 com\shoes\config\SecurityConfig.class
 com\shoes\security\JwtUtil.class
+com\shoes\entity\DanhGia.class
 com\shoes\service\GiamGiaService.class
 com\shoes\controller\ThuongHieuController.class
 com\shoes\controller\TaiKhoanController.class
+com\shoes\dto\DanhGiaResponse.class
 com\shoes\controller\UploadController.class
 com\shoes\service\TaiKhoanService.class

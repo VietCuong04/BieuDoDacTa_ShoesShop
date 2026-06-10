@@ -176,7 +176,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 
-const API = 'http://localhost:8080/api'
+const API = 'https://shoes-web-be-t7xh.onrender.com/api'
 const items = ref([])
 const products = ref([])
 const colors = ref([])

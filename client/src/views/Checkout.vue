@@ -135,14 +135,14 @@
               <div class="banking-details">
                 <div class="bank-badge">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                  <span>Vietcombank</span>
+                  <span>MBBank</span>
                 </div>
                 <div class="bank-rows">
                   <div class="bank-row">
                     <span class="bk-label">Số tài khoản</span>
                     <div class="bk-value-wrap">
-                      <span class="bk-value mono">1025277267</span>
-                      <button class="btn-copy" @click="copyText('1025277267')" title="Sao chép">
+                      <span class="bk-value mono">6838615102004</span>
+                      <button class="btn-copy" @click="copyText('6838615102004')" title="Sao chép">
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                       </button>
                     </div>
@@ -280,7 +280,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
-const API = 'http://localhost:8080/api'
+const API = 'https://shoes-web-be-t7xh.onrender.com/api'
 const router = useRouter()
 
 const user = ref(null)
@@ -984,13 +984,336 @@ onMounted(() => {
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+@media (max-width: 1024px) {
+  .checkout-banner { padding: 2.5rem 1.5rem 2rem; }
+  .banner-inner h1 { font-size: 1.6rem; }
+  
+  .checkout-container {
+    margin: 1.5rem auto 3rem;
+    padding: 0 1.5rem;
+  }
+  .checkout-grid {
+    grid-template-columns: 1fr 350px;
+    gap: 1.5rem;
+  }
+  
+  .form-section { padding: 1.3rem; }
+  .form-section h3 { font-size: 0.95rem; margin-bottom: 1rem; }
+}
+
 @media (max-width: 900px) {
-  .checkout-grid { grid-template-columns: 1fr; }
-  .form-row { grid-template-columns: 1fr; }
+  .checkout-banner { padding: 2rem 1.2rem 1.5rem; }
+  .banner-inner h1 { font-size: 1.4rem; }
+  
+  .checkout-container {
+    margin: 1.2rem auto 2rem;
+    padding: 0 1.2rem;
+  }
+  
+  .checkout-grid { 
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  
+  .summary-card { position: static; margin-top: 1rem; }
+  
+  .form-section { 
+    padding: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  .form-section h3 { font-size: 0.9rem; margin-bottom: 0.9rem; }
+  
+  .form-row { 
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
   .form-row-3 { grid-template-columns: 1fr; }
-  .banking-body { flex-direction: column-reverse; align-items: center; }
-  .banking-qr-wrap { width: 100%; flex-direction: row; gap: 1.2rem; align-items: center; justify-content: center; }
+  
+  .form-group { margin-bottom: 0.9rem; }
+  .form-group label { font-size: 0.78rem; }
+  .form-group input,
+  .form-group select,
+  .checkout-page textarea {
+    padding: 0.6rem 0.85rem;
+    font-size: 0.85rem;
+  }
+  
+  .banking-body { 
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 1rem;
+  }
+  .banking-details { flex: 1; width: 100%; }
+  .banking-qr-wrap { 
+    width: 100%;
+    flex-direction: row;
+    gap: 1.2rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .qr-frame { width: 130px; height: 130px; }
   .qr-label { margin: 0; }
+  
+  .payment-options { gap: 0.5rem; }
+  .payment-option { padding: 0.9rem; }
+  
+  .summary-card { padding: 1.2rem; }
+  .summary-card h3 { font-size: 0.95rem; margin-bottom: 0.8rem; }
+  .summary-items { max-height: 250px; }
+  .si-img { width: 45px; height: 45px; }
+  .si-name { font-size: 0.8rem; }
+  .btn-place-order { padding: 0.75rem; font-size: 0.95rem; }
+}
+
+@media (max-width: 768px) {
+  .checkout-banner { 
+    padding: 1.8rem 1rem 1.2rem;
+  }
+  .banner-inner h1 { font-size: 1.2rem; }
+  .banner-inner p { font-size: 0.8rem; }
+  
+  .checkout-container { 
+    margin: 1rem auto 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  .form-section { 
+    padding: 1rem;
+    margin-bottom: 0.7rem;
+  }
+  .form-section h3 { 
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+    gap: 0.3rem;
+  }
+  
+  .form-group { margin-bottom: 0.8rem; }
+  .form-group label { font-size: 0.75rem; }
+  .form-group input,
+  .form-group select,
+  .checkout-page textarea {
+    padding: 0.55rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .payment-option { padding: 0.8rem; }
+  .option-content strong { font-size: 0.85rem; }
+  .option-content span { font-size: 0.75rem; }
+  
+  .bank-badge { 
+    padding: 0.4rem 0.9rem;
+    font-size: 0.82rem;
+    margin-bottom: 1rem;
+  }
+  .bk-label { 
+    font-size: 0.72rem;
+    width: 100px;
+  }
+  .bk-value { font-size: 0.85rem; }
+  .bk-value.bk-amount { font-size: 0.95rem; }
+  .btn-copy { width: 24px; height: 24px; }
+  .banking-note { font-size: 0.72rem; padding: 0.5rem 0.6rem; }
+  
+  .qr-frame { width: 120px; height: 120px; }
+  .qr-label { font-size: 0.7rem; margin-bottom: 0.5rem; }
+  
+  .summary-card { 
+    padding: 1rem;
+    margin-top: 0.8rem;
+  }
+  .summary-card h3 { 
+    font-size: 0.9rem;
+    margin-bottom: 0.7rem;
+  }
+  .summary-items { 
+    gap: 0.6rem;
+    max-height: 200px;
+  }
+  .summary-item { gap: 0.6rem; }
+  .si-img { width: 40px; height: 40px; }
+  .si-name { font-size: 0.75rem; }
+  .si-variant { font-size: 0.7rem; }
+  .si-price { font-size: 0.8rem; }
+  
+  .summary-row { font-size: 0.8rem; padding: 0.25rem 0; }
+  .summary-row.total { font-size: 0.95rem; }
+  .total-price { font-size: 1.05rem; }
+  .summary-divider { margin: 0.8rem 0; }
+  
+  .btn-place-order { 
+    padding: 0.65rem;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+  
+  .coupon-row { margin: 0.6rem 0 0; }
+  .coupon-input-wrap { padding: 0 0 0 0.6rem; gap: 0.3rem; }
+  .coupon-input { padding: 0.55rem 0.25rem; font-size: 0.8rem; }
+  .btn-apply-coupon { padding: 0 0.8rem; height: 36px; font-size: 0.75rem; }
+  .btn-remove-coupon { width: 32px; height: 36px; }
+  
+  .error-msg { font-size: 0.8rem; padding: 0.5rem 0.6rem; }
+  .coupon-error, .coupon-success { font-size: 0.72rem; }
+  
+  .not-logged { padding: 3rem 1rem; }
+  .not-logged h2 { font-size: 1.05rem; }
+  .btn-primary-act { padding: 0.6rem 1.5rem; font-size: 0.85rem; }
+  
+  .success-screen { padding: 2.5rem 1rem; }
+  .success-card { 
+    padding: 2rem 1.5rem;
+    border-radius: 8px;
+  }
+  .success-card h2 { font-size: 1.2rem; }
+  .success-card p { font-size: 0.9rem; }
+  .success-card .sub { font-size: 0.8rem; margin-bottom: 1.2rem; }
+  .success-actions { gap: 0.6rem; }
+  .btn-secondary-act { padding: 0.6rem 1.5rem; font-size: 0.85rem; }
+}
+
+@media (max-width: 640px) {
+  .checkout-banner { 
+    padding: 1.5rem 0.8rem;
+  }
+  .banner-inner h1 { font-size: 1.1rem; }
+  
+  .checkout-container { 
+    margin: 0.8rem auto 1.2rem;
+    padding: 0 0.8rem;
+  }
+  
+  .form-section { 
+    padding: 0.9rem;
+    margin-bottom: 0.6rem;
+  }
+  .form-section h3 { 
+    font-size: 0.8rem;
+    margin-bottom: 0.7rem;
+  }
+  
+  .form-group label { font-size: 0.72rem; }
+  .form-group input,
+  .form-group select,
+  .checkout-page textarea {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .payment-option { padding: 0.7rem; }
+  
+  .bank-badge { 
+    font-size: 0.75rem;
+    padding: 0.3rem 0.8rem;
+  }
+  .bank-rows { border-radius: 0; }
+  .bank-row { padding: 0.65rem 0.9rem; }
+  .bk-label { 
+    font-size: 0.65rem;
+    width: 90px;
+  }
+  .bk-value { font-size: 0.8rem; }
+  .btn-copy { width: 22px; height: 22px; }
+  
+  .qr-frame { width: 110px; height: 110px; padding: 5px; border-width: 2px; }
+  .banking-qr-wrap { gap: 1rem; }
+  
+  .summary-card { padding: 0.9rem; }
+  .summary-card h3 { font-size: 0.85rem; margin-bottom: 0.6rem; }
+  .si-img { width: 36px; height: 36px; }
+  .si-qty { width: 16px; height: 16px; font-size: 0.6rem; top: -5px; right: -5px; }
+  
+  .summary-row { font-size: 0.75rem; }
+  .summary-row.total { font-size: 0.9rem; }
+  .total-price { font-size: 1rem; }
+  
+  .btn-place-order { 
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+  
+  .coupon-input-wrap { padding: 0 0 0 0.5rem; }
+  .coupon-input { padding: 0.5rem 0.2rem; font-size: 0.75rem; }
+  .btn-apply-coupon { height: 34px; padding: 0 0.7rem; }
+  .btn-remove-coupon { height: 34px; width: 30px; }
+  
+  .not-logged { padding: 2.5rem 0.8rem; }
+  .not-logged h2 { font-size: 1rem; margin-bottom: 0.2rem; }
+  .not-logged p { font-size: 0.8rem; margin-bottom: 1.2rem; }
+  
+  .success-screen { padding: 2rem 0.8rem; }
+  .success-card { padding: 1.5rem 1.2rem; }
+  .success-card h2 { font-size: 1.1rem; }
+  .success-card p { font-size: 0.85rem; }
+  .success-actions { gap: 0.5rem; flex-direction: column; }
+  .btn-secondary-act { width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .checkout-banner { 
+    padding: 1.2rem 0.6rem;
+  }
+  .banner-inner h1 { font-size: 1rem; }
+  
+  .checkout-container { 
+    margin: 0.6rem auto 1rem;
+    padding: 0 0.6rem;
+  }
+  
+  .form-section { 
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .form-section h3 { 
+    font-size: 0.75rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .form-group { margin-bottom: 0.7rem; }
+  .form-group label { font-size: 0.68rem; }
+  .form-group input,
+  .form-group select,
+  .checkout-page textarea {
+    padding: 0.45rem 0.7rem;
+    font-size: 0.7rem;
+  }
+  
+  .payment-option { padding: 0.6rem; }
+  .option-content strong { font-size: 0.8rem; }
+  
+  .bank-badge { font-size: 0.7rem; }
+  .bk-label { font-size: 0.6rem; }
+  .bk-value { font-size: 0.75rem; }
+  .btn-copy { width: 20px; height: 20px; }
+  
+  .qr-frame { width: 100px; height: 100px; padding: 4px; }
+  .banking-qr-wrap { gap: 0.8rem; }
+  
+  .summary-card { padding: 0.8rem; }
+  .summary-card h3 { font-size: 0.8rem; margin-bottom: 0.5rem; }
+  .summary-items { max-height: 150px; gap: 0.5rem; }
+  .si-img { width: 32px; height: 32px; }
+  
+  .summary-row { font-size: 0.7rem; }
+  .summary-row.total { font-size: 0.85rem; }
+  .total-price { font-size: 0.95rem; }
+  
+  .btn-place-order { 
+    padding: 0.55rem;
+    font-size: 0.8rem;
+  }
+  
+  .coupon-input { font-size: 0.7rem; }
+  .btn-apply-coupon { font-size: 0.7rem; padding: 0 0.6rem; height: 32px; }
+  .btn-remove-coupon { height: 32px; width: 28px; }
+  .coupon-error, .coupon-success { font-size: 0.65rem; }
+  
+  .not-logged { padding: 2rem 0.6rem; }
+  .not-logged h2 { font-size: 0.95rem; }
+  
+  .success-screen { padding: 1.5rem 0.6rem; }
+  .success-card { padding: 1.2rem 1rem; }
+  .success-card h2 { font-size: 1rem; }
+  .success-card p { font-size: 0.8rem; }
 }
 
 /* Coupon */
